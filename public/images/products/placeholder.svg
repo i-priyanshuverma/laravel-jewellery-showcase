@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="diamond" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" rx="30" fill="url(#bg)"/>
+  <ellipse cx="250" cy="380" rx="140" ry="25" fill="#000000" opacity="0.6"/>
+  <!-- Gold Outer Ring Frame -->
+  <circle cx="250" cy="270" r="110" fill="none" stroke="url(#gold)" stroke-width="28"/>
+  <!-- Solitaire Diamond Top -->
+  <polygon points="250,90 300,150 200,150" fill="url(#diamond)"/>
+  <polygon points="200,150 250,210 300,150" fill="url(#diamond)" opacity="0.8"/>
+  <line x1="250" y1="90" x2="250" y2="210" stroke="#ffffff" stroke-width="2"/>
+  <line x1="200" y1="150" x2="300" y2="150" stroke="#ffffff" stroke-width="2"/>
+</svg>

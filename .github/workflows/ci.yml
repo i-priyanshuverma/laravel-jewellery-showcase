@@ -1,0 +1,68 @@
+name: CI Quality & Test Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  laravel-tests:
+    name: PHP ${{ matrix.php-version }} Tests & Quality Checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.3']
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, pdo, pdo_sqlite, pdo_mysql, bcmath, redis, zip
+          coverage: none
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Security Vulnerability Scan
+        run: composer audit
+
+      - name: Code Style Verification (Pint PSR-12)
+        run: composer lint
+
+      - name: Static Type Analysis (Larastan Level 5)
+        run: composer analyse
+
+      - name: Install NPM Dependencies & Build Assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run PHPUnit Test Suite
+        env:
+          APP_KEY: 'base64:Oxy29Yh85Tx+Z14KfZmVwX7xXXpx0oKfkRmg5csfcZM='
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
+          BROADCAST_CONNECTION: log
+          REVERB_APP_KEY: 'test-key'
+          REVERB_APP_SECRET: 'test-secret'
+          REVERB_APP_ID: '12345'
+        run: composer test

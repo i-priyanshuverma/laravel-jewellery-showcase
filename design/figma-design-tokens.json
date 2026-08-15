@@ -1,0 +1,129 @@
+{
+  "name": "Artisan Jewellery Showcase & Reserve - Brand Identity & Design System",
+  "version": "1.0.0",
+  "author": "Priyanshu Verma",
+  "global": {
+    "color": {
+      "brand": {
+        "50": { "value": "#fffbeb", "type": "color", "description": "Champagne Mist - Lightest background tint" },
+        "100": { "value": "#fef3c7", "type": "color", "description": "Warm Linen - Subtle badge background" },
+        "200": { "value": "#fde68a", "type": "color", "description": "Gold Sheen - Soft border & hover highlights" },
+        "300": { "value": "#fcd34d", "type": "color", "description": "Luminous Gold - Accent glows" },
+        "400": { "value": "#fbbf24", "type": "color", "description": "Imperial Gold - Dark mode primary highlights" },
+        "500": { "value": "#f59e0b", "type": "color", "description": "Vibrant Amber - Primary brand interactive state" },
+        "600": { "value": "#d97706", "type": "color", "description": "Deep Artisan Ochre - Primary button & hero accents" },
+        "700": { "value": "#b45309", "type": "color", "description": "Antique Bronze - High contrast borders" },
+        "800": { "value": "#92400e", "type": "color", "description": "Burnished Gold - Dark mode borders" },
+        "900": { "value": "#78350f", "type": "color", "description": "Rich Mahogany Gold - Deep contrast" },
+        "950": { "value": "#451a03", "type": "color", "description": "Obsidian Amber - Darkest shadow base" }
+      },
+      "neutral": {
+        "50": { "value": "#f8fafc", "type": "color", "description": "Platinum Snow - Light mode app canvas background" },
+        "100": { "value": "#f1f5f9", "type": "color", "description": "Light slate surface fill" },
+        "200": { "value": "#e2e8f0", "type": "color", "description": "Subtle card border (Light Mode)" },
+        "300": { "value": "#cbd5e1", "type": "color", "description": "Muted border / divider" },
+        "400": { "value": "#94a3b8", "type": "color", "description": "Secondary metadata text" },
+        "500": { "value": "#64748b", "type": "color", "description": "Muted body text & icon strokes" },
+        "600": { "value": "#475569", "type": "color", "description": "Primary body text (Light Mode)" },
+        "700": { "value": "#334155", "type": "color", "description": "High-emphasis headings" },
+        "800": { "value": "#1e293b", "type": "color", "description": "Card borders (Dark Mode)" },
+        "900": { "value": "#0f172a", "type": "color", "description": "Surface card fill (Dark Mode)" },
+        "950": { "value": "#020617", "type": "color", "description": "Obsidian Night - Dark mode app canvas background" }
+      },
+      "semantic": {
+        "success": {
+          "50": { "value": "#ecfdf5", "type": "color" },
+          "500": { "value": "#10b981", "type": "color", "description": "Verified Vendor & Active Stock In-Hand" },
+          "700": { "value": "#047857", "type": "color" },
+          "950": { "value": "#022c22", "type": "color" }
+        },
+        "gemstone": {
+          "50": { "value": "#faf5ff", "type": "color" },
+          "500": { "value": "#a855f7", "type": "color", "description": "Diamonds & Precious Stone Attributes" },
+          "700": { "value": "#7e22ce", "type": "color" },
+          "950": { "value": "#3b0764", "type": "color" }
+        },
+        "danger": {
+          "50": { "value": "#fff1f2", "type": "color" },
+          "500": { "value": "#f43f5e", "type": "color", "description": "Sold Out & Expired Reservation Alerts" },
+          "700": { "value": "#be123c", "type": "color" },
+          "950": { "value": "#4c0519", "type": "color" }
+        }
+      },
+      "gradients": {
+        "goldPrimary": {
+          "value": "linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%)",
+          "type": "gradient",
+          "description": "Primary CTA & Luxury Metallic Accents (Light)"
+        },
+        "goldLuminous": {
+          "value": "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%)",
+          "type": "gradient",
+          "description": "Luminous Metallic Glow (Dark Mode)"
+        },
+        "darkCardSurface": {
+          "value": "linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%)",
+          "type": "gradient",
+          "description": "Glassmorphism Card Surface with inner depth"
+        }
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": { "value": "Plus Jakarta Sans, sans-serif", "type": "fontFamilies" },
+        "mono": { "value": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace", "type": "fontFamilies" }
+      },
+      "fontWeight": {
+        "regular": { "value": "400", "type": "fontWeights" },
+        "medium": { "value": "500", "type": "fontWeights" },
+        "semibold": { "value": "600", "type": "fontWeights" },
+        "bold": { "value": "700", "type": "fontWeights" },
+        "extrabold": { "value": "800", "type": "fontWeights" }
+      },
+      "fontSize": {
+        "2xs": { "value": "10px", "type": "fontSizes" },
+        "xs": { "value": "12px", "type": "fontSizes" },
+        "sm": { "value": "14px", "type": "fontSizes" },
+        "base": { "value": "16px", "type": "fontSizes" },
+        "lg": { "value": "18px", "type": "fontSizes" },
+        "xl": { "value": "20px", "type": "fontSizes" },
+        "2xl": { "value": "24px", "type": "fontSizes" },
+        "3xl": { "value": "30px", "type": "fontSizes" },
+        "4xl": { "value": "36px", "type": "fontSizes" }
+      }
+    },
+    "spacing": {
+      "1": { "value": "4px", "type": "spacing" },
+      "2": { "value": "8px", "type": "spacing" },
+      "3": { "value": "12px", "type": "spacing" },
+      "4": { "value": "16px", "type": "spacing" },
+      "6": { "value": "24px", "type": "spacing" },
+      "8": { "value": "32px", "type": "spacing" },
+      "12": { "value": "48px", "type": "spacing" },
+      "16": { "value": "64px", "type": "spacing" }
+    },
+    "borderRadius": {
+      "sm": { "value": "6px", "type": "borderRadius" },
+      "md": { "value": "8px", "type": "borderRadius" },
+      "lg": { "value": "12px", "type": "borderRadius" },
+      "xl": { "value": "16px", "type": "borderRadius" },
+      "2xl": { "value": "20px", "type": "borderRadius" },
+      "3xl": { "value": "24px", "type": "borderRadius" },
+      "full": { "value": "9999px", "type": "borderRadius" }
+    },
+    "boxShadow": {
+      "cardLight": {
+        "value": "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
+        "type": "boxShadow"
+      },
+      "cardDark": {
+        "value": "0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+        "type": "boxShadow"
+      },
+      "goldGlow": {
+        "value": "0 0 20px -3px rgba(245, 158, 11, 0.35)",
+        "type": "boxShadow"
+      }
+    }
+  }
+}

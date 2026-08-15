@@ -1,0 +1,22 @@
+#!/bin/sh
+
+echo "⚡ Running local pre-commit quality checks..."
+
+# 1. Laravel Pint Style Check
+echo "🔍 1/2 Checking code style with Laravel Pint..."
+./vendor/bin/pint --test
+if [ $? -ne 0 ]; then
+    echo "❌ Pint style check failed! Run './vendor/bin/pint' to auto-format before committing."
+    exit 1
+fi
+
+# 2. PHPStan Static Analysis (Level 8)
+echo "🔍 2/2 Running PHPStan static analysis..."
+./vendor/bin/phpstan analyse --memory-limit=2G
+if [ $? -ne 0 ]; then
+    echo "❌ PHPStan static analysis failed! Fix type errors before committing."
+    exit 1
+fi
+
+echo "✅ All pre-commit checks passed successfully!"
+exit 0
