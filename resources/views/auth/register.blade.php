@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-6 text-center space-y-1">
-        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-slate-100">Vendor Registration</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Join Sonar Haat & showcase your artisanal jewellery</p>
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-slate-100">{{ __('Vendor Registration') }}</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('Join Sonar Haat & showcase your artisanal jewellery') }}</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
@@ -49,14 +49,14 @@
 
         <div class="pt-2">
             <x-primary-button class="w-full">
-                {{ __('Register as Vendor') }}
+                {{ __('REGISTER AS VENDOR') }}
             </x-primary-button>
         </div>
 
         <div class="text-center pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
-            Already registered?
+            {{ __('Already registered?') }}
             <a href="{{ route('login') }}" class="font-bold text-amber-600 dark:text-amber-400 hover:text-amber-500 dark:hover:text-amber-300 hover:underline ml-1">
-                Log in to account &rarr;
+                {{ __('Log in to account →') }}
             </a>
         </div>
     </form>

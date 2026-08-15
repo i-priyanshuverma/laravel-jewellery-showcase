@@ -17,7 +17,7 @@
         </div>
 
         <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-            <a href="{{ route('login') }}" class="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">&larr; Back to login</a>
+            <a href="{{ route('login') }}" class="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">{{ __('← Back to login') }}</a>
             <x-primary-button>
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>

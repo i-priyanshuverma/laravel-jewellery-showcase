@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-6 text-center space-y-1">
-        <h2 class="text-xl font-extrabold text-slate-900 dark:text-slate-100">Set New Password</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Enter your new password below</p>
+        <h2 class="text-xl font-extrabold text-slate-900 dark:text-slate-100">{{ __('Set New Password') }}</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">{{ __('Enter your new password below') }}</p>
     </div>
 
     <form method="POST" action="{{ route('password.store') }}" class="space-y-4">
@@ -12,7 +12,7 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email Address')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>

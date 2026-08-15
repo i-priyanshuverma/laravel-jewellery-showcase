@@ -22,6 +22,13 @@
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
+                        <!-- Email (Read-Only) -->
+                        <div>
+                            <x-input-label for="email" :value="__('Email Address')" />
+                            <x-text-input id="email" type="email" class="mt-1 block w-full bg-slate-100 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 cursor-not-allowed border-slate-200 dark:border-slate-800 focus:ring-0 focus:border-slate-200 dark:focus:border-slate-800" :value="$user->email" disabled readonly />
+                            <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">{{ __('Your login email cannot be changed.') }}</p>
+                        </div>
+
                         <!-- Business Name -->
                         <div>
                             <x-input-label for="business_name" :value="__('Business / Brand Name')" />
@@ -46,13 +53,13 @@
                         <!-- Description -->
                         <div>
                             <x-input-label for="description" :value="__('Brand / Store Description')" />
-                            <textarea id="description" name="description" rows="4" class="mt-1 block w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm focus:ring-amber-500 focus:border-amber-500 text-sm text-slate-900 dark:text-slate-100 transition-colors" placeholder="Tell customers about your craftsmanship, heritage, and specialty...">{{ old('description', $profile->description) }}</textarea>
+                            <textarea id="description" name="description" rows="4" class="mt-1 block w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm focus:ring-amber-500 focus:border-amber-500 text-sm text-slate-900 dark:text-slate-100 transition-colors" placeholder="{{ __('Tell customers about your craftsmanship, heritage, and specialty...') }}">{{ old('description', $profile->description) }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
                     </div>
 
                     <div class="mt-8 flex items-center justify-end border-t border-slate-100 dark:border-slate-800 pt-6">
-                        <x-primary-button>Save Profile Changes</x-primary-button>
+                        <x-primary-button>{{ __('Save Profile Changes') }}</x-primary-button>
                     </div>
                 </form>
             </div>

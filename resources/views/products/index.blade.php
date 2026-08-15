@@ -9,10 +9,10 @@
                     <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 sticky top-24 transition-colors duration-200">
                         <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
                             <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-1.5">
-                                <span>Filter Catalogue</span>
+                                <span>{{ __('Filter Catalogue') }}</span>
                             </h3>
                             @if (request()->hasAny(['search', 'category_id', 'vendor_id', 'min_price', 'max_price', 'metal', 'purity', 'colour', 'size', 'stone_type', 'in_stock']))
-                                <a href="{{ route('products.index') }}" class="text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:underline">Reset All</a>
+                                <a href="{{ route('products.index') }}" class="text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:underline">{{ __('Reset All') }}</a>
                             @endif
                         </div>
 
@@ -26,9 +26,9 @@
 
                             <!-- Category Filter -->
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Category</label>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Category') }}</label>
                                 <select name="category_id" onchange="this.form.submit()" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-colors">
-                                    <option value="">All Categories</option>
+                                    <option value="">{{ __('All Categories') }}</option>
                                     @foreach ($categories as $cat)
                                         <option value="{{ $cat->id }}" {{ request('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                                     @endforeach
@@ -37,9 +37,9 @@
 
                             <!-- Vendor Filter -->
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Jeweller / Vendor</label>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Jeweller / Vendor') }}</label>
                                 <select name="vendor_id" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-colors">
-                                    <option value="">All Vendors</option>
+                                    <option value="">{{ __('All Vendors') }}</option>
                                     @foreach ($vendors as $v)
                                         <option value="{{ $v->id }}" {{ request('vendor_id') == $v->id ? 'selected' : '' }}>{{ $v->vendorProfile?->business_name ?? $v->name }}</option>
                                     @endforeach
@@ -48,7 +48,7 @@
 
                             <!-- Price Range -->
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Price Range (₹)</label>
+                                <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Price Range (₹)') }}</label>
                                 <div class="grid grid-cols-2 gap-1.5">
                                     <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min ₹" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:ring-amber-500">
                                     <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max ₹" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:ring-amber-500">
@@ -58,9 +58,9 @@
                             <!-- Metal Filter -->
                             @if ($metals->count() > 0)
                                 <div>
-                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Base Metal</label>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Base Metal') }}</label>
                                     <select name="metal" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-amber-500">
-                                        <option value="">All Metals</option>
+                                        <option value="">{{ __('All Metals') }}</option>
                                         @foreach ($metals as $m)
                                             <option value="{{ $m->name }}" {{ request('metal') == $m->name ? 'selected' : '' }}>{{ $m->name }}</option>
                                         @endforeach
@@ -71,9 +71,9 @@
                             <!-- Colour Filter -->
                             @if ($colours->count() > 0)
                                 <div>
-                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Colour / Finish</label>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Colour / Finish') }}</label>
                                     <select name="colour" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-amber-500">
-                                        <option value="">All Colours</option>
+                                        <option value="">{{ __('All Colours') }}</option>
                                         @foreach ($colours as $c)
                                             <option value="{{ $c->name }}" {{ request('colour') == $c->name ? 'selected' : '' }}>{{ $c->name }}</option>
                                         @endforeach
@@ -84,9 +84,9 @@
                             <!-- Stone Type Filter -->
                             @if ($stoneTypes->count() > 0)
                                 <div>
-                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Stone / Gem</label>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Stone / Gem') }}</label>
                                     <select name="stone_type" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-amber-500">
-                                        <option value="">All Gems & Stones</option>
+                                        <option value="">{{ __('All Gems & Stones') }}</option>
                                         @foreach ($stoneTypes as $st)
                                             <option value="{{ $st->name }}" {{ request('stone_type') == $st->name ? 'selected' : '' }}>{{ $st->name }}</option>
                                         @endforeach
@@ -97,9 +97,9 @@
                             <!-- Size Filter -->
                             @if ($sizes->count() > 0)
                                 <div>
-                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Size</label>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{{ __('Size') }}</label>
                                     <select name="size" class="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-100 focus:ring-amber-500">
-                                        <option value="">All Sizes</option>
+                                        <option value="">{{ __('All Sizes') }}</option>
                                         @foreach ($sizes as $sz)
                                             <option value="{{ $sz->value }}" {{ request('size') == $sz->value ? 'selected' : '' }}>{{ $sz->name }}</option>
                                         @endforeach
@@ -111,13 +111,13 @@
                             <div class="pt-1">
                                 <label class="inline-flex items-center cursor-pointer gap-2">
                                     <input type="checkbox" name="in_stock" value="1" {{ request('in_stock') ? 'checked' : '' }} class="rounded border-slate-300 dark:border-slate-700 text-amber-600 dark:text-amber-500 focus:ring-amber-500 bg-white dark:bg-slate-950">
-                                    <span class="text-[11px] font-medium text-slate-700 dark:text-slate-300">In Stock Only</span>
+                                    <span class="text-[11px] font-medium text-slate-700 dark:text-slate-300">{{ __('In Stock Only') }}</span>
                                 </label>
                             </div>
 
                             <!-- Submit Button -->
                             <button type="submit" class="w-full py-2 bg-gold-gradient text-slate-950 font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm hover:brightness-105 transition-all">
-                                Apply Filters
+                                {{ __('Apply Filters') }}
                             </button>
                         </form>
                     </div>
@@ -154,13 +154,13 @@
                                     <input type="hidden" name="{{ $key }}" value="{{ $val }}">
                                 @endif
                             @endforeach
-                            <label class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sort By:</label>
+                            <label class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{ __('Sort By:') }}</label>
                             <select name="sort" onchange="this.form.submit()" class="px-2.5 py-1 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-amber-700 dark:text-amber-400 font-semibold focus:ring-amber-500">
-                                <option value="latest" {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}>Newest Arrivals</option>
-                                <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
-                                <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
-                                <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Name: A-Z</option>
-                                <option value="stock_desc" {{ request('sort') == 'stock_desc' ? 'selected' : '' }}>Available Stock</option>
+                                <option value="latest" {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}>{{ __('Newest Arrivals') }}</option>
+                                <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>{{ __('Price: Low to High') }}</option>
+                                <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>{{ __('Price: High to Low') }}</option>
+                                <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>{{ __('Name: A-Z') }}</option>
+                                <option value="stock_desc" {{ request('sort') == 'stock_desc' ? 'selected' : '' }}>{{ __('Available Stock') }}</option>
                             </select>
                         </form>
                     </div>

@@ -2,18 +2,18 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <a href="{{ route('vendor.products.show', $product) }}" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition text-sm shadow-sm" title="Back to Product">
+                <a href="{{ route('vendor.products.show', $product) }}" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition text-sm shadow-sm" title="{{ __('Back to Product') }}">
                     &larr;
                 </a>
                 <div>
                     <h2 class="font-extrabold text-xl text-slate-900 dark:text-slate-100 leading-tight">
-                        Product Gallery: {{ $product->name }}
+                        {{ __('Product Gallery:') }} {{ $product->name }}
                     </h2>
-                    <p class="text-xs text-slate-400 font-mono mt-0.5">Category: {{ $product->category->name }} &bull; Max 5 images</p>
+                    <p class="text-xs text-slate-400 font-mono mt-0.5">{{ __('Category:') }} {{ $product->category->name }} &bull; {{ __('Max 5 images') }}</p>
                 </div>
             </div>
             <a href="{{ route('vendor.products.show', $product) }}" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
-                &larr; Back to Product Details
+                &larr; {{ __('Back to Product Details') }}
             </a>
         </div>
     </x-slot>
@@ -32,9 +32,9 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <template x-if="isSessionExpired">
-                            <button type="button" @click="window.location.reload()" class="px-3 py-1 bg-rose-600 text-white rounded-lg text-xs font-bold hover:bg-rose-700">Refresh Page</button>
+                            <button type="button" @click="window.location.reload()" class="px-3 py-1 bg-rose-600 text-white rounded-lg text-xs font-bold hover:bg-rose-700">{{ __('Refresh Page') }}</button>
                         </template>
-                        <button type="button" @click="errorMessage = ''" class="text-xs font-bold text-rose-500 hover:text-rose-700">Dismiss</button>
+                        <button type="button" @click="errorMessage = ''" class="text-xs font-bold text-rose-500 hover:text-rose-700">{{ __('Dismiss') }}</button>
                     </div>
                 </div>
             </template>
@@ -44,14 +44,14 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
                     <div>
                         <h3 class="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                            <span>📤 Upload Jewellery Images</span>
+                            <span>📤 {{ __('Upload Jewellery Images') }}</span>
                         </h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">High-resolution JPG, PNG, WEBP supported (Up to 5MB each).</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{{ __('High-resolution JPG, PNG, WEBP supported (Up to 5MB each).') }}</p>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="px-3 py-1 rounded-full text-xs font-bold font-mono"
                               :class="currentCount >= maxCount ? 'bg-rose-50 text-rose-700 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800' : 'bg-amber-50 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200 dark:border-amber-700'">
-                            <span x-text="currentCount"></span> / <span x-text="maxCount"></span> Slots Used
+                            <span x-text="currentCount"></span> / <span x-text="maxCount"></span> {{ __('Slots Used') }}
                         </span>
                     </div>
                 </div>
@@ -71,10 +71,10 @@
                         <div class="space-y-2 pointer-events-none">
                             <span class="text-4xl">📸</span>
                             <p class="text-sm font-bold text-slate-700 dark:text-slate-200">
-                                Click to select images or drag and drop here
+                                {{ __('Click to select images or drag and drop here') }}
                             </p>
                             <p class="text-xs text-slate-400">
-                                You can select multiple images simultaneously (Remaining: <span class="font-bold text-amber-600 dark:text-amber-400" x-text="remainingSlots"></span>)
+                                {{ __('You can select multiple images simultaneously (Remaining:') }} <span class="font-bold text-amber-600 dark:text-amber-400" x-text="remainingSlots"></span>)
                             </p>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
                     <template x-if="selectedFiles.length > 0">
                         <div class="space-y-3 pt-2">
                             <div class="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
-                                <span>Selected for Upload (<span x-text="selectedFiles.length"></span>)</span>
-                                <button type="button" @click="clearSelection()" class="text-rose-500 hover:underline">Clear</button>
+                                <span>{{ __('Selected for Upload') }} (<span x-text="selectedFiles.length"></span>)</span>
+                                <button type="button" @click="clearSelection()" class="text-rose-500 hover:underline">{{ __('Clear') }}</button>
                             </div>
                             
                             <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
@@ -109,7 +109,7 @@
                                 <button type="button"
                                         @click="uploadFiles()"
                                         class="px-6 py-2.5 bg-gold-gradient text-slate-950 font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md hover:shadow-lg hover:brightness-105 transition flex items-center gap-2">
-                                    <span>Upload <span x-text="selectedFiles.length"></span> Image(s) Now</span>
+                                    <span>{{ __('Upload') }} <span x-text="selectedFiles.length"></span> {{ __('Image(s) Now') }}</span>
                                     <span>&rarr;</span>
                                 </button>
                             </div>
@@ -122,7 +122,7 @@
                     <div class="flex items-center justify-between text-xs font-extrabold text-slate-800 dark:text-slate-200">
                         <div class="flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping"></span>
-                            <span x-text="progressStatus">Uploading...</span>
+                            <span x-text="progressStatus">{{ __('Uploading...') }}</span>
                         </div>
                         <span class="font-mono text-sm text-amber-600 dark:text-amber-400" x-text="`${progressPercent}%`"></span>
                     </div>
@@ -136,13 +136,13 @@
                     </div>
 
                     <p class="text-[11px] text-slate-400 text-center">
-                        Please do not close or refresh this page while your images are transferring.
+                        {{ __('Please do not close or refresh this page while your images are transferring.') }}
                     </p>
                 </div>
 
                 <!-- Cap Reached Warning -->
                 <div x-show="currentCount >= maxCount" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
-                    Maximum limit of 10 images reached for this product. Delete an existing image below to upload a new one.
+                    {{ __('Maximum limit of 5 images reached for this product. Delete an existing image below to upload a new one.') }}
                 </div>
             </div>
 
@@ -150,9 +150,9 @@
             <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-base font-extrabold text-slate-900 dark:text-white">
-                        Current Gallery (<span x-text="currentCount">{{ $product->images->count() }}</span>)
+                        {{ __('Current Gallery') }} (<span x-text="currentCount">{{ $product->images->count() }}</span>)
                     </h3>
-                    <span class="text-xs text-slate-400">Sorted by display order</span>
+                    <span class="text-xs text-slate-400">{{ __('Sorted by display order') }}</span>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -162,22 +162,22 @@
                                 <img src="{{ $img->url }}" class="w-full h-full object-cover">
                                 @if ($index === 0)
                                     <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-extrabold tracking-wider uppercase shadow">
-                                        Primary
+                                        {{ __('Primary') }}
                                     </span>
                                 @endif
                             </div>
                             <div class="p-3 bg-white dark:bg-slate-900 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
-                                <span class="text-[11px] font-mono text-slate-400">Position #{{ $img->sort_order + 1 }}</span>
-                                <form method="POST" action="{{ route('vendor.products.images.destroy', [$product, $img]) }}" onsubmit="event.preventDefault(); window.confirmAction({ title: 'Delete Gallery Image', message: 'Are you sure you want to delete this photo from the product gallery? This will permanently delete the image file.', confirmText: 'Delete Photo', icon: 'danger', form: this });">
+                                <span class="text-[11px] font-mono text-slate-400">{{ __('Position') }} #{{ $img->sort_order + 1 }}</span>
+                                <form method="POST" action="{{ route('vendor.products.images.destroy', [$product, $img]) }}" onsubmit="event.preventDefault(); window.confirmAction({ title: '{{ __('Delete Gallery Image') }}', message: '{{ __('Are you sure you want to delete this photo from the product gallery? This will permanently delete the image file.') }}', confirmText: '{{ __('Delete Photo') }}', icon: 'danger', form: this });">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="text-xs font-bold text-rose-600 dark:text-rose-400 hover:text-rose-700 transition">Delete</button>
+                                    <button type="submit" class="text-xs font-bold text-rose-600 dark:text-rose-400 hover:text-rose-700 transition">{{ __('Delete') }}</button>
                                 </form>
                             </div>
                         </div>
                     @empty
                         <div class="col-span-full py-12 text-center text-slate-400">
                             <span class="text-4xl block mb-2">🖼️</span>
-                            <span class="text-sm font-medium">No images uploaded for this product yet. Use the upload box above.</span>
+                            <span class="text-sm font-medium">{{ __('No images uploaded for this product yet. Use the upload box above.') }}</span>
                         </div>
                     @endforelse
                 </div>

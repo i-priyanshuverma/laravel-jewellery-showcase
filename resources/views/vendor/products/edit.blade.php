@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-extrabold text-xl text-slate-900 dark:text-slate-100 leading-tight">
-                Edit Product: {{ $product->name }}
+                {{ __('Edit Product:') }} {{ $product->name }}
             </h2>
             <div class="flex items-center gap-3">
                 <a href="{{ route('vendor.products.images.index', $product) }}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition shadow-sm">
-                    <span>📷 Gallery ({{ $product->images->count() }}/5)</span>
+                    <span>📷 {{ __('Gallery') }} ({{ $product->images->count() }}/5)</span>
                 </a>
                 <a href="{{ route('vendor.products.show', $product) }}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition shadow-sm">
-                    <span>View Product &rarr;</span>
+                    <span>{{ __('View Product →') }}</span>
                 </a>
             </div>
         </div>
@@ -23,10 +23,10 @@
             <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-xl transition-colors">
                 <div class="border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
                     <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">
-                        1. Product Information
+                        {{ __('1. Product Information') }}
                     </h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                        Update basic product name, category, description and public visibility.
+                        {{ __('Update basic product name, category, description and public visibility.') }}
                     </p>
                 </div>
 
@@ -62,15 +62,15 @@
                                 <x-input-label for="status" :value="__('Publication Status')" />
                                 <select id="status" name="status" class="mt-1 block w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm focus:ring-amber-500 focus:border-amber-500 transition-colors">
                                     @if ($product->status === 'draft')
-                                        <option value="draft" {{ old('status', $product->status) == 'draft' ? 'selected' : '' }}>Draft (Work in Progress)</option>
-                                        <option value="active" {{ old('status', $product->status) == 'active' ? 'selected' : '' }}>Active (Publish)</option>
+                                        <option value="draft" {{ old('status', $product->status) == 'draft' ? 'selected' : '' }}>{{ __('Draft (Work in Progress)') }}</option>
+                                        <option value="active" {{ old('status', $product->status) == 'active' ? 'selected' : '' }}>{{ __('Active (Publish)') }}</option>
                                     @else
-                                        <option value="active" {{ old('status', $product->status) == 'active' ? 'selected' : '' }}>Active (Public Showcase)</option>
-                                        <option value="inactive" {{ old('status', $product->status) == 'inactive' ? 'selected' : '' }}>Inactive (Delisted / Paused)</option>
+                                        <option value="active" {{ old('status', $product->status) == 'active' ? 'selected' : '' }}>{{ __('Active (Public Showcase)') }}</option>
+                                        <option value="inactive" {{ old('status', $product->status) == 'inactive' ? 'selected' : '' }}>{{ __('Inactive (Delisted / Paused)') }}</option>
                                     @endif
                                 </select>
                                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-1 block">
-                                    {{ $product->status === 'draft' ? 'Draft products remain private until you publish as Active.' : 'Setting product to Inactive delists it and releases active customer holds.' }}
+                                    {{ $product->status === 'draft' ? __('Draft products remain private until you publish as Active.') : __('Setting product to Inactive delists it and releases active customer holds.') }}
                                 </span>
                                 <x-input-error class="mt-2" :messages="$errors->get('status')" />
                             </div>
@@ -78,15 +78,15 @@
                             <div class="flex items-center pt-6">
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $product->is_featured) ? 'checked' : '' }} class="rounded border-slate-300 dark:border-slate-700 text-amber-600 focus:ring-amber-500 bg-white dark:bg-slate-900">
-                                    <span class="ms-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Feature this product</span>
+                                    <span class="ms-2 text-sm font-semibold text-slate-700 dark:text-slate-300">{{ __('Feature this product') }}</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
-                        <a href="{{ route('vendor.products.show', $product) }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">Cancel</a>
-                        <x-primary-button>Update Product Details</x-primary-button>
+                        <a href="{{ route('vendor.products.show', $product) }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">{{ __('Cancel') }}</a>
+                        <x-primary-button>{{ __('Update Product Details') }}</x-primary-button>
                     </div>
                 </form>
             </div>
@@ -96,18 +96,18 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
                     <div>
                         <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-                            <span>2. Product Variants & SKUs</span>
+                            <span>{{ __('2. Product Variants & SKUs') }}</span>
                             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                                {{ $product->variants->count() }} Variant(s)
+                                {{ $product->variants->count() }} {{ __('Variant(s)') }}
                             </span>
                         </h3>
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                            Each variant defines a unique SKU (Stock Keeping Unit), metal purity, size, pricing, inventory stock, and gemstone setup.
+                            {{ __('Each variant defines a unique SKU (Stock Keeping Unit), metal purity, size, pricing, inventory stock, and gemstone setup.') }}
                         </p>
                     </div>
 
                     <a href="{{ route('vendor.products.variants.create', $product) }}" class="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-xl shadow-md transition self-start sm:self-auto">
-                        <span>+ Add New SKU / Variant</span>
+                        <span>+ {{ __('Add New SKU / Variant') }}</span>
                     </a>
                 </div>
 
@@ -116,12 +116,12 @@
                         <table class="w-full text-left text-xs">
                             <thead class="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
                                 <tr>
-                                    <th class="px-4 py-3">SKU</th>
-                                    <th class="px-4 py-3">Specifications</th>
-                                    <th class="px-4 py-3">Price</th>
-                                    <th class="px-4 py-3">Stock</th>
-                                    <th class="px-4 py-3">Status</th>
-                                    <th class="px-4 py-3 text-right">Actions</th>
+                                    <th class="px-4 py-3">{{ __('SKU') }}</th>
+                                    <th class="px-4 py-3">{{ __('Specifications') }}</th>
+                                    <th class="px-4 py-3">{{ __('Price') }}</th>
+                                    <th class="px-4 py-3">{{ __('Stock') }}</th>
+                                    <th class="px-4 py-3">{{ __('Status') }}</th>
+                                    <th class="px-4 py-3 text-right">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
@@ -135,9 +135,9 @@
                                                 {{ $variant->purity }} {{ $variant->metal }} {{ $variant->colour ? "• {$variant->colour}" : '' }}
                                             </div>
                                             <div class="text-[11px] text-slate-500 dark:text-slate-400">
-                                                Size: {{ $variant->size ?? 'Standard' }} | Weight: {{ $variant->weight ? $variant->weight.'g' : 'N/A' }}
+                                                {{ __('Size:') }} {{ $variant->size ?? __('Standard') }} | {{ __('Weight:') }} {{ $variant->weight ? $variant->weight.'g' : 'N/A' }}
                                                 @if ($variant->stones->isNotEmpty())
-                                                    | {{ $variant->stones->count() }} Gemstone(s)
+                                                    | {{ $variant->stones->count() }} {{ __('Gemstone(s)') }}
                                                 @endif
                                             </div>
                                         </td>
@@ -145,16 +145,14 @@
                                             ₹{{ number_format($variant->price, 2) }}
                                         </td>
                                         <td class="px-4 py-3.5 font-bold {{ $variant->stock > 0 ? 'text-slate-900 dark:text-white' : 'text-rose-500' }}">
-                                            {{ $variant->stock }} units
+                                            {{ $variant->stock }} {{ __('units') }}
                                         </td>
                                         <td class="px-4 py-3.5">
-                                            <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full {{ $variant->status === 'active' ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-800' }}">
-                                                {{ $variant->status }}
-                                            </span>
+                                            <x-status-badge :status="$variant->status" />
                                         </td>
                                         <td class="px-4 py-3.5 text-right space-x-2">
                                             <a href="{{ route('vendor.products.variants.edit', [$product, $variant]) }}" class="inline-flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
-                                                <span>Edit SKU & Pricing &rarr;</span>
+                                                <span>{{ __('Edit SKU & Pricing →') }}</span>
                                             </a>
                                         </td>
                                     </tr>
@@ -167,12 +165,12 @@
                         <div class="w-12 h-12 mx-auto rounded-full bg-amber-50 dark:bg-amber-950 flex items-center justify-center text-amber-600 dark:text-amber-400 text-xl font-bold">
                             🏷️
                         </div>
-                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">No Variants or SKUs Created Yet</h4>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-white">{{ __('No Variants or SKUs Created Yet') }}</h4>
                         <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-                            Every product requires at least one variant defining the SKU code, metal purity, pricing, and stock quantity before it can be published.
+                            {{ __('Every product requires at least one variant defining the SKU code, metal purity, pricing, and stock quantity before it can be published.') }}
                         </p>
                         <a href="{{ route('vendor.products.variants.create', $product) }}" class="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-xl shadow-md transition">
-                            <span>+ Add First Variant & SKU</span>
+                            <span>+ {{ __('Add First Variant & SKU') }}</span>
                         </a>
                     </div>
                 @endif

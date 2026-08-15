@@ -8,7 +8,7 @@
                     <x-application-logo class="w-10 h-10 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform" />
                     <div>
                         <span class="text-base font-black tracking-widest text-slate-900 dark:text-slate-100 block transition-colors">SONAR HAAT</span>
-                        <span class="text-[10px] tracking-wider text-amber-600 dark:text-amber-400 uppercase font-bold block -mt-0.5">Multi-Vendor Goldsmith Showcase</span>
+                        <span class="text-[10px] tracking-wider text-amber-600 dark:text-amber-400 uppercase font-bold block -mt-0.5">{{ __('Multi-Vendor Goldsmith Showcase') }}</span>
                     </div>
                 </a>
 
@@ -16,20 +16,20 @@
                 <div class="hidden sm:flex space-x-6">
                     @if (!auth()->check() || (!auth()->user()->isAdmin() && !auth()->user()->isVendor()))
                         <a href="{{ route('products.index') }}" class="px-3 py-2 text-sm font-semibold transition-colors {{ request()->routeIs('products.index') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 dark:border-amber-400' : 'text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400' }}">
-                            Explore Catalogue
+                            {{ __('Explore Catalogue') }}
                         </a>
                     @endif
 
                     @auth
                         @if (auth()->user()->isAdmin())
                             <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 text-sm font-semibold transition-colors {{ request()->routeIs('admin.*') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 dark:border-amber-400' : 'text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400' }}">
-                                Admin Panel
+                                {{ __('Admin Panel') }}
                             </a>
                         @endif
 
                         @if (auth()->user()->isVendor())
                             <a href="{{ route('vendor.dashboard') }}" class="px-3 py-2 text-sm font-semibold transition-colors {{ request()->routeIs('vendor.*') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 dark:border-amber-400' : 'text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400' }}">
-                                Vendor Portal
+                                {{ __('Vendor Portal') }}
                             </a>
                         @endif
                     @endauth
@@ -72,7 +72,7 @@
                                    type="text"
                                    name="search"
                                    x-model="query"
-                                   placeholder="Search jewellery, SKU, vendor..."
+                                   placeholder="{{ __('Search jewellery, SKU, vendor...') }}"
                                    :class="isExpanded ? 'w-64 md:w-80 opacity-100 px-4 py-2 pr-10 border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100' : 'w-0 opacity-0 p-0 border-transparent bg-transparent cursor-pointer'"
                                    class="rounded-xl text-xs placeholder-slate-400 dark:placeholder-slate-500 border transition-all duration-300 ease-out focus:ring-1 focus:ring-amber-500 focus:border-amber-500 shadow-inner h-10">
 
@@ -81,7 +81,7 @@
                                     @click="if (isExpanded && query.trim()) { $el.closest('form').submit(); } else { expand(); }"
                                     :class="isExpanded ? 'absolute right-2 text-amber-600 dark:text-amber-400' : 'w-10 h-10 text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl'"
                                     class="transition-colors flex items-center justify-center"
-                                    title="Search">
+                                    title="{{ __('Search') }}">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
@@ -137,7 +137,7 @@
                     <div>
                         <a href="{{ route('reservations.index') }}"
                            class="h-10 px-2.5 text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-slate-950/80 hover:bg-amber-100 dark:hover:bg-slate-900 border border-amber-200 dark:border-amber-500/30 rounded-xl shadow-sm transition-all flex items-center justify-center group"
-                           title="View My Active Reservations ({{ $activeSessionHolds->count() }} piece{{ $activeSessionHolds->count() > 1 ? 's' : '' }} held)">
+                           title="{{ __('My Active Holds') }} ({{ $activeSessionHolds->count() }})">
                             <div class="relative flex items-center justify-center w-7 h-7">
                                 <!-- Luxury Shopping Bag Icon -->
                                 <svg class="w-7 h-7 text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform" fill="currentColor" fill-opacity="0.2" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,22 +165,22 @@
 
                         <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl py-1.5 z-50 transition-colors">
                             @if (auth()->user()->isVendor())
-                                <a href="{{ route('vendor.profile.edit') }}" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-600 dark:hover:text-amber-400">Vendor Profile</a>
+                                <a href="{{ route('vendor.profile.edit') }}" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-amber-600 dark:hover:text-amber-400">{{ __('Vendor Profile') }}</a>
                             @endif
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800">Log Out</button>
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800">{{ __('Log Out') }}</button>
                             </form>
                         </div>
                     </div>
                 @else
                     <div class="flex items-center gap-2">
                         <a href="{{ route('login') }}" class="h-10 px-3.5 flex items-center text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
-                            Log in
+                            {{ __('Log in') }}
                         </a>
                         <a href="{{ route('register') }}" class="h-10 px-4 flex items-center bg-gold-gradient text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-amber-500/20 hover:brightness-110 transition-all">
-                            Register
+                            {{ __('Register') }}
                         </a>
                     </div>
                 @endauth
@@ -232,7 +232,7 @@
                     <input type="text"
                            name="search"
                            value="{{ request('search') }}"
-                           placeholder="Search jewellery, SKU, vendor..."
+                           placeholder="{{ __('Search jewellery, SKU, vendor...') }}"
                            class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:ring-amber-500 focus:border-amber-500">
                     <button type="submit" class="absolute right-2.5 top-2 text-slate-400 hover:text-amber-500">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,10 +277,10 @@
             @else
                 <div class="p-4 space-y-2 border-t border-slate-200 dark:border-slate-800">
                     <a href="{{ route('login') }}" class="block text-center py-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Log in
+                        {{ __('Log in') }}
                     </a>
                     <a href="{{ route('register') }}" class="block text-center py-2 bg-gold-gradient text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl">
-                        Register
+                        {{ __('Register') }}
                     </a>
                 </div>
             @endauth

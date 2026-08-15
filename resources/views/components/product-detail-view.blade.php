@@ -38,11 +38,11 @@
                 @if (!$isAdmin)
                     <a href="{{ route('vendor.products.images.index', $product) }}"
                        class="w-full flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-bold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl hover:bg-amber-100 dark:hover:bg-amber-500/20 transition shadow-sm">
-                        <span>📷 Manage Gallery ({{ $product->images->count() }})</span>
+                        <span>📷 {{ __('Manage Gallery') }} ({{ $product->images->count() }})</span>
                     </a>
                 @else
                     <div class="text-center py-1 text-xs text-slate-400 font-mono">
-                        {{ $product->images->count() }} Studio Image(s)
+                        {{ $product->images->count() }} {{ __('Studio Image(s)') }}
                     </div>
                 @endif
             </div>
@@ -50,19 +50,19 @@
             <div class="flex-1 min-w-0 space-y-6">
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Variants</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Total Variants') }}</span>
                         <p class="text-xl font-extrabold text-slate-900 dark:text-slate-100 mt-0.5">{{ $product->variants->count() }}</p>
                     </div>
                     <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Available Stock</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Available Stock') }}</span>
                         <p class="text-xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5 font-mono" x-text="totalStock">{{ $product->variants->sum('stock') }}</p>
                     </div>
                     <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Customer Holds</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Customer Holds') }}</span>
                         <p class="text-xl font-extrabold text-purple-600 dark:text-purple-400 mt-0.5 font-mono" x-text="totalHolds">{{ $product->variants->sum(fn($v) => $v->activeReservations->sum('quantity')) }}</p>
                     </div>
                     <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Price Range</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Price Range') }}</span>
                         <p class="text-sm font-bold text-slate-900 dark:text-slate-100 mt-1.5 truncate font-mono">
                             @if ($product->variants->isNotEmpty())
                                 ₹{{ number_format($product->variants->min('price')) }} - ₹{{ number_format($product->variants->max('price')) }}
@@ -74,22 +74,22 @@
                 </div>
 
                 <div class="space-y-2">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Craftsmanship & Description</h4>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Craftsmanship & Description') }}</h4>
                     <div class="p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-800/80 text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-h-48 overflow-y-auto scrollbar-thin">
-                        {{ $product->description ?? 'No detailed description provided for this jewellery piece.' }}
+                        {{ $product->description ?? __('No detailed description provided for this jewellery piece.') }}
                     </div>
                 </div>
 
                 <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-800">
                     <div class="flex items-center gap-3">
-                        <span>Product Listed: <strong class="text-slate-700 dark:text-slate-300">{{ $product->created_at->format('M d, Y') }}</strong></span>
+                        <span>{{ __('Product Listed:') }} <strong class="text-slate-700 dark:text-slate-300">{{ $product->created_at->format('M d, Y') }}</strong></span>
                         <span>&bull;</span>
-                        <span>Product Updated: <strong class="text-slate-700 dark:text-slate-300">{{ $product->updated_at->diffForHumans() }}</strong></span>
+                        <span>{{ __('Product Updated:') }} <strong class="text-slate-700 dark:text-slate-300">{{ $product->updated_at->diffForHumans() }}</strong></span>
                     </div>
 
                     @if ($isAdmin && $product->vendor)
                         <div class="flex items-center gap-2">
-                            <span>Vendor: <strong class="text-slate-800 dark:text-slate-200">{{ $product->vendor?->vendorProfile?->business_name ?? $product->vendor?->name }}</strong></span>
+                            <span>{{ __('Vendor:') }} <strong class="text-slate-800 dark:text-slate-200">{{ $product->vendor?->vendorProfile?->business_name ?? $product->vendor?->name }}</strong></span>
                         </div>
                     @endif
                 </div>
@@ -100,16 +100,16 @@
     <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 space-y-4 transition-colors">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Product Variants ({{ $product->variants->count() }})</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">{{ __('Product Variants') }} ({{ $product->variants->count() }})</h3>
                 <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Real-time inventory feed & customer holds</span>
+                    <span>{{ __('Real-time inventory feed & customer holds') }}</span>
                 </p>
             </div>
             @if (!$isAdmin)
                 <a href="{{ route('vendor.products.variants.create', $product) }}"
                    class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-sm hover:shadow transition">
-                    + Add New Variant
+                    + {{ __('Add New Variant') }}
                 </a>
             @endif
         </div>
@@ -118,17 +118,17 @@
             <table class="w-full text-left text-sm text-slate-700 dark:text-slate-300">
                 <thead class="bg-slate-50 dark:bg-slate-950/60 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     <tr>
-                        <th class="px-4 py-3.5">SKU</th>
-                        <th class="px-4 py-3.5">Metal & Purity</th>
-                        <th class="px-4 py-3.5">Colour / Size</th>
-                        <th class="px-4 py-3.5">Weight</th>
-                        <th class="px-4 py-3.5">Price</th>
-                        <th class="px-4 py-3.5">Available Stock</th>
-                        <th class="px-4 py-3.5">Active Holds</th>
-                        <th class="px-4 py-3.5">Status</th>
-                        <th class="px-4 py-3.5">Added / Updated</th>
+                        <th class="px-4 py-3.5">{{ __('SKU') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Metal & Purity') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Colour / Size') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Weight') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Price') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Available Stock') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Active Holds') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Status') }}</th>
+                        <th class="px-4 py-3.5">{{ __('Added / Updated') }}</th>
                         @if (!$isAdmin)
-                            <th class="px-4 py-3.5 text-right">Actions</th>
+                            <th class="px-4 py-3.5 text-right">{{ __('Actions') }}</th>
                         @endif
                     </tr>
                 </thead>
@@ -152,11 +152,11 @@
                             <td class="px-4 py-3.5">
                                 <template x-if="getVariantHolds({{ $variant->id }}, {{ $variant->reserved_quantity }}) > 0">
                                     <span class="px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold font-mono">
-                                        <span x-text="getVariantHolds({{ $variant->id }}, {{ $variant->reserved_quantity }})"></span> held
+                                        <span x-text="getVariantHolds({{ $variant->id }}, {{ $variant->reserved_quantity }})"></span> {{ __('held') }}
                                     </span>
                                 </template>
                                 <template x-if="getVariantHolds({{ $variant->id }}, {{ $variant->reserved_quantity }}) <= 0">
-                                    <span class="text-xs text-slate-400">None</span>
+                                    <span class="text-xs text-slate-400">{{ __('None') }}</span>
                                 </template>
                             </td>
                             <td class="px-4 py-3.5"><x-status-badge :status="$variant->status" /></td>
@@ -166,10 +166,10 @@
                             </td>
                             @if (!$isAdmin)
                                 <td class="px-4 py-3.5 text-right space-x-3">
-                                    <a href="{{ route('vendor.products.variants.edit', [$product, $variant]) }}" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">Edit</a>
-                                    <form method="POST" action="{{ route('vendor.products.variants.destroy', [$product, $variant]) }}" class="inline" onsubmit="event.preventDefault(); window.confirmAction({ title: 'Delete Product Variant', message: 'Are you sure you want to delete variant {{ addslashes($variant->sku) }}? This will permanently remove this variant specification.', confirmText: 'Delete Variant', icon: 'danger', form: this });">
+                                    <a href="{{ route('vendor.products.variants.edit', [$product, $variant]) }}" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">{{ __('Edit') }}</a>
+                                    <form method="POST" action="{{ route('vendor.products.variants.destroy', [$product, $variant]) }}" class="inline" onsubmit="event.preventDefault(); window.confirmAction({ title: '{{ __('Delete Product Variant') }}', message: 'Are you sure you want to delete variant {{ addslashes($variant->sku) }}? This will permanently remove this variant specification.', confirmText: '{{ __('Delete Variant') }}', icon: 'danger', form: this });">
                                         @csrf @method('DELETE')
-                                        <button type="submit" class="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:underline">Delete</button>
+                                        <button type="submit" class="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:underline">{{ __('Delete') }}</button>
                                     </form>
                                 </td>
                             @endif
@@ -177,9 +177,9 @@
                     @empty
                         <tr>
                             <td colspan="{{ $isAdmin ? 9 : 10 }}" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
-                                No variants exist for this product.
+                                {{ __('No variants exist for this product.') }}
                                 @if (!$isAdmin)
-                                    <a href="{{ route('vendor.products.variants.create', $product) }}" class="text-amber-600 dark:text-amber-400 font-semibold underline ml-1">Add first variant</a>
+                                    <a href="{{ route('vendor.products.variants.create', $product) }}" class="text-amber-600 dark:text-amber-400 font-semibold underline ml-1">{{ __('Add first variant') }}</a>
                                 @endif
                             </td>
                         </tr>

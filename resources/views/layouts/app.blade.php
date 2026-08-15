@@ -40,13 +40,13 @@
             </main>
 
             <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800/80 py-8 mt-16 text-slate-500 dark:text-slate-400 text-sm transition-colors duration-200">
-                <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-start">
                     <div>
                         <span class="text-sm font-extrabold tracking-wider text-slate-900 dark:text-slate-100 uppercase">SONAR HAAT</span>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Multi-Vendor Goldsmith Showcase & Certified Jewellery Platform.</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ __('Multi-Vendor Goldsmith Showcase & Certified Jewellery Platform.') }}</p>
                     </div>
                     <div class="text-xs text-slate-400 dark:text-slate-500">
-                        &copy; {{ date('Y') }} Sonar Haat. All rights reserved.
+                        &copy; {{ date('Y') }} Sonar Haat. {{ __('All rights reserved.') }}
                     </div>
                 </div>
             </footer>
@@ -78,6 +78,14 @@
 
             <script>
                 function realtimeAlertManager(userId, isVendor, isAdmin) {
+                    const translations = {
+                        approvedTitle: @json(__('Account Approved!')),
+                        suspendedTitle: @json(__('Account Suspended')),
+                        reactivatedTitle: @json(__('Account Reactivated')),
+                        adminTitle: @json(__('Vendor Status Changed')),
+                        adminMessage: @json(__(':vendor status updated to :status.'))
+                    };
+
                     return {
                         alerts: [],
                         init() {
@@ -87,13 +95,13 @@
                                 window.Echo.private('vendor.' + userId)
                                     .listen('.VendorStatusUpdated', (e) => {
                                         let icon = '🎉';
-                                        let title = 'Account Approved!';
+                                        let title = translations.approvedTitle;
                                         if (e.action === 'suspended') {
                                             icon = '⚠️';
-                                            title = 'Account Suspended';
+                                            title = translations.suspendedTitle;
                                         } else if (e.action === 'reactivated') {
-                                            icon = '✅';
-                                            title = 'Account Reactivated';
+                                            icon = '✨';
+                                            title = translations.reactivatedTitle;
                                         }
                                         this.addAlert(title, e.message, e.action, icon);
 
@@ -110,7 +118,10 @@
                             if (isAdmin) {
                                 window.Echo.private('admin.inventory')
                                     .listen('.VendorStatusUpdated', (e) => {
-                                        this.addAlert('Vendor Status Changed', `${e.vendorName} status updated to ${e.status}.`, 'info', '🏪');
+                                        const msg = translations.adminMessage
+                                            .replace(':vendor', e.vendorName)
+                                            .replace(':status', e.status);
+                                        this.addAlert(translations.adminTitle, msg, 'info', '🏪');
                                     });
                             }
                         },

@@ -19,7 +19,7 @@ $colorClasses = [
 
 <div {{ $attributes->merge(['class' => 'bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 transition-colors']) }}>
     <div class="flex items-center justify-between">
-        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ $title }}</span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __($title) }}</span>
         @if ($icon)
             <span class="p-2 rounded-xl {{ $colorClasses }} text-base">{{ $icon }}</span>
         @endif
@@ -27,7 +27,7 @@ $colorClasses = [
     <div class="flex items-baseline justify-between">
         <span class="text-3xl font-extrabold text-slate-900 dark:text-slate-100 font-mono">{{ $value }}</span>
         @if ($linkUrl)
-            <a href="{{ $linkUrl }}" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">{{ $linkLabel }}</a>
+            <a href="{{ $linkUrl }}" class="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">{{ __($linkLabel) }}</a>
         @endif
     </div>
     @if ($slot->isNotEmpty())

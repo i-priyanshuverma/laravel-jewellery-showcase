@@ -1,19 +1,19 @@
 <div x-data="{
         isOpen: false,
-        title: 'Confirm Action',
-        message: 'Are you sure you want to proceed with this action?',
-        confirmText: 'Confirm',
+        title: '{{ __('Confirm Action') }}',
+        message: '{{ __('Are you sure you want to proceed with this action?') }}',
+        confirmText: '{{ __('Confirm') }}',
         confirmButtonClass: 'bg-rose-600 hover:bg-rose-500 text-white',
-        cancelText: 'Cancel',
+        cancelText: '{{ __('Cancel') }}',
         icon: 'danger',
         targetForm: null,
 
         open(data) {
-            this.title = data.title || 'Confirm Action';
-            this.message = data.message || 'Are you sure you want to proceed?';
-            this.confirmText = data.confirmText || 'Confirm';
+            this.title = data.title || '{{ __('Confirm Action') }}';
+            this.message = data.message || '{{ __('Are you sure you want to proceed?') }}';
+            this.confirmText = data.confirmText || '{{ __('Confirm') }}';
             this.confirmButtonClass = data.confirmButtonClass || (data.icon === 'warning' ? 'bg-amber-600 hover:bg-amber-500 text-white' : 'bg-rose-600 hover:bg-rose-500 text-white');
-            this.cancelText = data.cancelText || 'Cancel';
+            this.cancelText = data.cancelText || '{{ __('Cancel') }}';
             this.icon = data.icon || 'danger';
             this.targetForm = data.form || null;
             this.isOpen = true;

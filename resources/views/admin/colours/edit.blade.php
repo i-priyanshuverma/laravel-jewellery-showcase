@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-extrabold text-xl text-slate-900 dark:text-slate-100 leading-tight">Edit Colour: {{ $colour->name }}</h2>
+        <h2 class="font-extrabold text-xl text-slate-900 dark:text-slate-100 leading-tight">{{ __('Edit Colour:') }} {{ $colour->name }}</h2>
     </x-slot>
     <div class="py-8 bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
         <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
@@ -19,13 +19,13 @@
                     <div>
                         <x-input-label for="status" :value="__('Status')" />
                         <select id="status" name="status" class="mt-1 block w-full rounded-xl border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-slate-100 focus:ring-amber-500 focus:border-amber-500 transition-colors">
-                            <option value="active" {{ old('status', $colour->status) === 'active' ? 'selected' : '' }}>Active</option>
-                            <option value="inactive" {{ old('status', $colour->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
+                            <option value="active" {{ old('status', $colour->status) === 'active' ? 'selected' : '' }}>{{ __('Active') }}</option>
+                            <option value="inactive" {{ old('status', $colour->status) === 'inactive' ? 'selected' : '' }}>{{ __('Inactive') }}</option>
                         </select>
                     </div>
                     <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <a href="{{ route('admin.colours.index') }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">Cancel</a>
-                        <x-primary-button>Update Colour</x-primary-button>
+                        <a href="{{ route('admin.colours.index') }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">{{ __('Cancel') }}</a>
+                        <x-primary-button>{{ __('Update Colour') }}</x-primary-button>
                     </div>
                 </form>
             </div>

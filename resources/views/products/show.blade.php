@@ -42,7 +42,7 @@
 
                     <!-- Product Description Card -->
                     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-3 shadow-sm transition-colors">
-                        <h3 class="text-base font-bold text-slate-900 dark:text-slate-100">Design & Craftsmanship Details</h3>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-slate-100">{{ __('Design & Craftsmanship Details') }}</h3>
                         <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">{{ $product->description }}</p>
                     </div>
                 </div>
@@ -53,14 +53,14 @@
                         <!-- Vendor Info -->
                         <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Master Artisan Vendor</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">{{ __('Jeweller / Vendor') }}</span>
                                 <h4 class="font-bold text-slate-900 dark:text-slate-200 text-base flex items-center gap-1.5">
                                     <span>{{ $product->vendor->vendorProfile?->business_name ?? $product->vendor->name }}</span>
                                     <span class="text-emerald-500 text-xs" title="Certified Approved Vendor">✓</span>
                                 </h4>
                             </div>
                             <span class="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider rounded-full">
-                                Certified Vendor
+                                {{ __('Certified Vendor') }}
                             </span>
                         </div>
 
@@ -74,7 +74,7 @@
                         <!-- Select Variant -->
                         <div class="space-y-3">
                             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                                Available Variations (Choose an option)
+                                {{ __('Available Variations (Choose an option)') }}
                             </label>
 
                             <div class="space-y-2 max-h-72 overflow-y-auto pr-1">
@@ -95,11 +95,11 @@
                                         </div>
 
                                         <div class="text-xs text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-2">
-                                            <span>Color: {{ $variant->colour ?? 'N/A' }}</span>
+                                            <span>{{ __('Colour / Finish') }}: {{ $variant->colour ?? 'N/A' }}</span>
                                             <span>•</span>
-                                            <span>Size: {{ $variant->size ?? 'N/A' }}</span>
+                                            <span>{{ __('Size') }}: {{ $variant->size ?? 'N/A' }}</span>
                                             <span>•</span>
-                                            <span>Weight: {{ $variant->weight ? $variant->weight.'g' : 'N/A' }}</span>
+                                            <span>{{ __('Weight:') }} {{ $variant->weight ? $variant->weight.'g' : 'N/A' }}</span>
                                         </div>
 
                                         @if ($variant->stones->isNotEmpty())
@@ -112,11 +112,11 @@
                                             </div>
                                         @endif
 
-                                        <!-- Stock & Hold Status Indicators -->
+                                         <!-- Stock & Hold Status Indicators -->
                                         <div class="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800/40 text-[11px]">
                                             <div class="flex items-center gap-2">
                                                 <span :class="getVariantStock({{ $variant->id }}) > 0 ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-rose-600 dark:text-rose-400 font-semibold'">
-                                                    <span x-text="getVariantStock({{ $variant->id }}) > 0 ? ('In Stock: ' + getVariantStock({{ $variant->id }})) : 'Out of Stock'">{{ $variant->stock > 0 ? 'In Stock: ' . $variant->stock : 'Out of Stock' }}</span>
+                                                    <span x-text="getVariantStock({{ $variant->id }}) > 0 ? ('{{ __('In Stock') }}: ' + getVariantStock({{ $variant->id }})) : '{{ __('Out of Stock') }}'">{{ $variant->stock > 0 ? __('In Stock') . ': ' . $variant->stock : __('Out of Stock') }}</span>
                                                 </span>
                                             </div>
 
@@ -138,7 +138,7 @@
                             <div class="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
                                 <div class="p-4 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl text-xs text-amber-700 dark:text-amber-400 font-semibold flex items-center gap-2">
                                     <span class="text-base">🔒</span>
-                                    <span>Logged in as <strong>{{ auth()->user()->isAdmin() ? 'Administrator' : 'Vendor' }}</strong>. Stock reservation is available for public buyers/customers.</span>
+                                    <span>{{ __('Logged in as') }} <strong>{{ auth()->user()->isAdmin() ? __('Administrator') : __('Vendor') }}</strong>. {{ __('Stock reservation is available for public buyers/customers.') }}</span>
                                 </div>
                             </div>
                         @else
@@ -146,11 +146,11 @@
                                 <div>
                                     <div class="flex items-center justify-between mb-1.5">
                                         <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                                            Quantity
+                                            {{ __('Quantity') }}
                                         </label>
                                         <span class="text-[11px] font-semibold" :class="isOutOfStock ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'" x-show="selectedVariant">
-                                            <span x-show="!isOutOfStock">Available in stock: <strong class="text-amber-600 dark:text-amber-400" x-text="selectedVariant ? selectedVariant.stock : 0"></strong></span>
-                                            <span x-show="isOutOfStock" class="font-bold">Currently Sold Out</span>
+                                            <span x-show="!isOutOfStock">{{ __('Available in stock:') }} <strong class="text-amber-600 dark:text-amber-400" x-text="selectedVariant ? selectedVariant.stock : 0"></strong></span>
+                                            <span x-show="isOutOfStock" class="font-bold">{{ __('Currently Sold Out') }}</span>
                                         </span>
                                     </div>
 
@@ -159,7 +159,7 @@
                                          x-cloak
                                          class="mb-2 text-xs text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 px-3 py-2 rounded-xl flex items-center gap-2">
                                         <span>⚠️</span>
-                                        <span>Only <strong x-text="selectedVariant.stock"></strong> unit(s) available in stock. Please choose a quantity between 1 and <span x-text="selectedVariant.stock"></span>.</span>
+                                        <span>{{ __('Only') }} <strong x-text="selectedVariant.stock"></strong> {{ __('unit(s) available in stock. Please choose a valid quantity.') }}</span>
                                     </div>
 
                                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
@@ -196,7 +196,7 @@
                                                     @method('DELETE')
                                                     <button type="submit"
                                                             class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5">
-                                                        <span>Release Hold</span>
+                                                        <span>{{ __('Release Hold') }}</span>
                                                     </button>
                                                 </form>
                                             </template>
@@ -211,8 +211,8 @@
                                                     <button type="submit"
                                                             :disabled="isOutOfStock || quantity < 1 || quantity > (selectedVariant ? selectedVariant.stock : 0)"
                                                             class="w-full py-3 bg-gold-gradient text-slate-950 font-bold text-xs uppercase tracking-wider rounded-2xl shadow-md hover:shadow-lg hover:brightness-105 disabled:opacity-40 disabled:cursor-not-allowed disabled:grayscale transition-all">
-                                                        <span x-show="!isOutOfStock">Hold for 15 Mins</span>
-                                                        <span x-show="isOutOfStock">Out of Stock</span>
+                                                        <span x-show="!isOutOfStock">{{ __('HOLD FOR 15 MINS') }}</span>
+                                                        <span x-show="isOutOfStock">{{ __('Out of Stock') }}</span>
                                                     </button>
                                                 </form>
                                             </template>

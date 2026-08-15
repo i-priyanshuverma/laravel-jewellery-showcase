@@ -18,8 +18,8 @@
                     </div>
 
                     <div class="mt-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-6">
-                        <a href="{{ route('admin.categories.index') }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">Cancel</a>
-                        <x-primary-button>Create Category</x-primary-button>
+                        <a href="{{ route('admin.categories.index') }}" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">{{ __('Cancel') }}</a>
+                        <x-primary-button>{{ __('Create Category') }}</x-primary-button>
                     </div>
                 </form>
             </div>

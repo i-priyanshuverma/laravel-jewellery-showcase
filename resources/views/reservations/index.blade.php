@@ -4,19 +4,19 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-100">
-                        My Active Reservations
+                        {{ __('My Active Reservations') }}
                     </h1>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        Jewellery pieces currently locked exclusively for your session via 15-minute concurrency holds.
+                        {{ __('Jewellery pieces currently locked exclusively for your session via 15-minute concurrency holds.') }}
                     </p>
                 </div>
 
                 @if ($reservations->isNotEmpty())
-                    <form method="POST" action="{{ route('reservations.destroyAll') }}" onsubmit="event.preventDefault(); window.confirmAction({ title: 'Release All Reserved Items', message: 'Are you sure you want to release all your active stock reservations? These items will return to available stock for other buyers immediately.', confirmText: 'Release All Holds', icon: 'warning', form: this });">
+                    <form method="POST" action="{{ route('reservations.destroyAll') }}" onsubmit="event.preventDefault(); window.confirmAction({ title: '{{ __('Release All Reserved Items') }}', message: '{{ __('Are you sure you want to release all your active stock reservations? These items will return to available stock for other buyers immediately.') }}', confirmText: '{{ __('Release All Holds') }}', icon: 'warning', form: this });">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="px-4 py-2 bg-white dark:bg-slate-900 hover:bg-rose-50 dark:hover:bg-rose-950 border border-slate-300 dark:border-slate-700 hover:border-rose-300 dark:hover:border-rose-700 text-rose-600 dark:text-rose-400 text-xs font-bold rounded-xl transition shadow-sm">
-                            ✕ Release All Holds
+                            ✕ {{ __('Release All Holds') }}
                         </button>
                     </form>
                 @endif
@@ -30,13 +30,13 @@
                         ⏱
                     </div>
                     <div class="space-y-2">
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200">No Active Reservations</h3>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200">{{ __('No Active Reservations') }}</h3>
                         <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
-                            You currently do not have any jewellery pieces on hold. When you reserve a variant on a product page, it will be locked here for 15 minutes.
+                            {{ __('You currently do not have any jewellery pieces on hold. When you reserve a variant on a product page, it will be locked here for 15 minutes.') }}
                         </p>
                     </div>
                     <a href="{{ route('products.index') }}" class="inline-block px-6 py-3 bg-gold-gradient text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:shadow-lg hover:brightness-105 transition">
-                        Explore Fine Jewellery Catalogue
+                        {{ __('Explore Fine Jewellery Catalogue') }}
                     </a>
                 </div>
             @else
@@ -80,9 +80,9 @@
                                             <span>•</span>
                                             <span>{{ $variant->metal }} {{ $variant->purity }}</span>
                                             <span>•</span>
-                                            <span>Color: {{ $variant->colour ?? 'N/A' }}</span>
+                                            <span>{{ __('Colour / Finish') }}: {{ $variant->colour ?? 'N/A' }}</span>
                                             <span>•</span>
-                                            <span>Size: {{ $variant->size ?? 'N/A' }}</span>
+                                            <span>{{ __('Size') }}: {{ $variant->size ?? 'N/A' }}</span>
                                         </div>
 
                                         @if ($variant->stones->isNotEmpty())
@@ -99,8 +99,8 @@
 
                                 <div class="flex flex-row sm:flex-col items-between sm:items-end justify-between w-full sm:w-auto border-t sm:border-t-0 border-slate-100 dark:border-slate-800 pt-4 sm:pt-0 space-y-3">
                                     <div class="text-left sm:text-right">
-                                        <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Quantity Held</span>
-                                        <span class="font-bold text-sm text-slate-800 dark:text-slate-100">{{ $res->quantity }} unit(s)</span>
+                                        <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">{{ __('Quantity Held') }}</span>
+                                        <span class="font-bold text-sm text-slate-800 dark:text-slate-100">{{ $res->quantity }} {{ __('unit(s)') }}</span>
                                         <span class="font-bold text-amber-600 dark:text-amber-400 text-lg block mt-0.5">
                                             ₹{{ number_format($subtotal, 2) }}
                                         </span>
@@ -111,11 +111,11 @@
                                         <span x-text="countdown"></span>
                                     </div>
 
-                                    <form method="POST" action="{{ route('reservations.destroy', $res) }}" onsubmit="event.preventDefault(); window.confirmAction({ title: 'Release Stock Hold', message: 'Release hold on {{ addslashes($variant->product->name) }} ({{ addslashes($variant->sku) }})? This item will return to available stock for other customers.', confirmText: 'Release Hold', icon: 'warning', form: this });">
+                                    <form method="POST" action="{{ route('reservations.destroy', $res) }}" onsubmit="event.preventDefault(); window.confirmAction({ title: '{{ __('Release Stock Hold') }}', message: 'Release hold on {{ addslashes($variant->product->name) }} ({{ addslashes($variant->sku) }})? This item will return to available stock for other customers.', confirmText: '{{ __('Release Hold') }}', icon: 'warning', form: this });">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:underline transition">
-                                            Release Hold
+                                            {{ __('Release Hold') }}
                                         </button>
                                     </form>
                                 </div>
@@ -126,20 +126,20 @@
                     <div class="lg:col-span-4 space-y-6">
                         <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-xl space-y-6 sticky top-24 transition-colors">
                             <h3 class="font-bold text-slate-900 dark:text-slate-100 text-lg border-b border-slate-100 dark:border-slate-800 pb-3">
-                                Summary
+                                {{ __('Summary') }}
                             </h3>
 
                             <div class="space-y-3 text-sm">
                                 <div class="flex justify-between text-slate-500 dark:text-slate-400">
-                                    <span>Total Held Items</span>
-                                    <span class="font-bold text-slate-800 dark:text-slate-100">{{ $reservations->sum('quantity') }} unit(s)</span>
+                                    <span>{{ __('Total Held Items') }}</span>
+                                    <span class="font-bold text-slate-800 dark:text-slate-100">{{ $reservations->sum('quantity') }} {{ __('unit(s)') }}</span>
                                 </div>
                                 <div class="flex justify-between text-slate-500 dark:text-slate-400">
-                                    <span>Unique Variations</span>
+                                    <span>{{ __('Unique Variations') }}</span>
                                     <span class="font-bold text-slate-800 dark:text-slate-100">{{ $reservations->count() }}</span>
                                 </div>
                                 <div class="flex justify-between text-base font-bold text-slate-900 dark:text-slate-100 pt-3 border-t border-slate-100 dark:border-slate-800">
-                                    <span>Total Value</span>
+                                    <span>{{ __('Total Value') }}</span>
                                     <span class="font-bold text-amber-600 dark:text-amber-400 text-xl">
                                         ₹{{ number_format($reservations->sum(fn($r) => $r->variant->price * $r->quantity), 2) }}
                                     </span>
@@ -149,15 +149,15 @@
                             <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl text-[11px] text-slate-600 dark:text-slate-400 space-y-2 leading-relaxed">
                                 <div class="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400">
                                     <span>🔒</span>
-                                    <span>How 15-Minute Holds Work</span>
+                                    <span>{{ __('How 15-Minute Holds Work') }}</span>
                                 </div>
                                 <p>
-                                    Stock is temporarily reserved using database row-level locking. If not confirmed before the timer expires, items are automatically returned to public inventory.
+                                    {{ __('Stock is temporarily reserved using database row-level locking. If not confirmed before the timer expires, items are automatically returned to public inventory.') }}
                                 </p>
                             </div>
 
                             <a href="{{ route('products.index') }}" class="block text-center w-full py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 font-bold text-xs uppercase tracking-wider rounded-xl border border-slate-200 dark:border-slate-700 transition shadow-sm">
-                                &larr; Continue Exploring
+                                &larr; {{ __('Continue Exploring') }}
                             </a>
                         </div>
                     </div>
